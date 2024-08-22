@@ -1,45 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btanir <btanir@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/30 15:59:09 by muguveli          #+#    #+#             */
-/*   Updated: 2024/08/22 15:05:41 by btanir           ###   ########.fr       */
+/*   Created: 2024/08/22 14:49:33 by btanir            #+#    #+#             */
+/*   Updated: 2024/08/22 15:02:01 by btanir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_len_not_nl(char *str)
+void	mlx_create(t_game *game)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\n' && str[i] != '\0')
-		i++;
-	return (i);
+	game->mlx = mlx_init();
+	if (game->mlx)
+	{
+		// free ekle;
+		exit(1);
+	}
+	game->win = mlx_new_window(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d");
+	if (game->win)
+	{
+		// free ekle;
+		exit(1);
+	}
+    
+    mlx_loop(game->mlx);
 }
-
-int	ft_str_digit(char *str)
-{
-	int	i;
-
-	i = -1;
-	while (str[++i])
-		if (!ft_isdigit(str[i]))
-			return (0);
-	return (1);
-}
-
-int	arr_len(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
-}
-

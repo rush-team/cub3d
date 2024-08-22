@@ -6,10 +6,12 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 MLX_DIR = lib/mlx
 MLX = $(MLX_DIR)/libmlx.a
+MLX_FLAGS = -framework OpenGL -framework AppKit
 
 SRC = \
 	main.c map.c path_control.c \
 	utils.c map_utils.c map_data_control.c \
+	ray_casting.c
 
 OBJ_DIR = obj
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
@@ -21,8 +23,8 @@ $(shell mkdir -p bin $(OBJ_DIR) )
 
 all: $(NAME) run
 
-$(NAME): $(OBJ) $(LIBFT) $(MLX)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) -o $(NAME)
+$(NAME): $(MLX) $(OBJ) $(LIBFT) 
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) $(MLX_FLAGS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
